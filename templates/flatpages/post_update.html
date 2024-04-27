@@ -1,0 +1,12 @@
+
+
+{% block content %}
+<h1>Изменить объявление</h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Сохранить изменения">
+    <button> <a href="{% url 'post' %}"> Назад </a> </button>
+</form>
+{% endblock content %}
