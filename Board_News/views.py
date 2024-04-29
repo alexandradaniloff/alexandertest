@@ -2,14 +2,14 @@
 
 from django.views.generic import ListView, CreateView, DetailView, DeleteView, UpdateView
 from .models import Author, Post, Comment
-#from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .filters import PostFilter
 from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 
 
-class PostList(ListView):
+class PostList(LoginRequiredMixin, ListView):
     # Указываем модель, объекты которой мы будем выводить
     model = Post
     # Поле, которое будет использоваться для сортировки объектов
@@ -43,7 +43,7 @@ class PostList(ListView):
 
 
 
-class PostCreate(CreateView):
+class PostCreate(LoginRequiredMixin,CreateView):
     permission_required = ('post.add_post',)
     # Указываем нашу разработанную форму
     form_class = PostForm
@@ -59,7 +59,7 @@ class PostCreate(CreateView):
         #send_email_task.delay(post.pk)
         return super().form_valid(form)
 
-class PostDetail(DetailView):
+class PostDetail(LoginRequiredMixin, DetailView):
     # Модель всё та же, но мы хотим получать информацию по отдельному товару
     model = Post
     # Используем другой шаблон — product.html
@@ -67,18 +67,18 @@ class PostDetail(DetailView):
     # Название объекта, в котором будет выбранный пользователем продукт
     context_object_name = 'post_id'
 
-class PostDelete( DeleteView):
+class PostDelete(LoginRequiredMixin, DeleteView):
     permission_required = ('post.delete_post',)
     model = Post
     template_name = 'flatpages/post_delete.html'
     success_url = reverse_lazy('post')
 
-class PostUpdate(UpdateView):
+class PostUpdate(LoginRequiredMixin, UpdateView):
     model = Post
     fields = [ 'title', 'content', 'author', 'type', 'price', 'image']
     template_name = 'flatpages/post_update.html'
 
-class CommentCreate(CreateView):
+class CommentCreate(LoginRequiredMixin, CreateView):
     permission_required = ('comment.add_comment',)
     # Указываем нашу разработанную форму
     form_class = CommentForm

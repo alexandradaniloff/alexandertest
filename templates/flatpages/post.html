@@ -58,7 +58,7 @@
 
 <button> <a href="{% url 'post_create' %}"> Создать объявление </a> </button>
 <button> <a href="{% url 'comment_create' %}"> Создать отклик </a> </button>
-<form action="{% url 'logout' %}" method="post">
+<form action="{% url 'account_logout' %}" method="post">
       {% csrf_token %}
       <button type="submit">Выйти</button>
 </form>
