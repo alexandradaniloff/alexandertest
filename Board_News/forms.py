@@ -11,6 +11,8 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title', 'content', 'author', 'type', 'price', 'image']
 
+
+
 class CommentForm(forms.ModelForm):
     #description = forms.CharField(min_length=20)
 

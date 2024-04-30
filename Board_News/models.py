@@ -6,15 +6,12 @@ from django.urls import reverse
 
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="Пользователь")
-
     class Meta:
         verbose_name = 'автор'
         verbose_name_plural = 'авторы'
         ordering = ['user']
-
     def __str__(self):
        return f'{self.user}'
-
 
 
 class Post(models.Model):
