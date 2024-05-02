@@ -11,7 +11,7 @@ class Author(models.Model):
         verbose_name_plural = 'авторы'
         ordering = ['user']
     def __str__(self):
-       return f'{self.user}'
+       return self.user.username
 
 
 class Post(models.Model):

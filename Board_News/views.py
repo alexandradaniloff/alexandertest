@@ -9,6 +9,7 @@ from .forms import PostForm, CommentForm
 from django.urls import reverse_lazy
 
 
+
 class PostList(LoginRequiredMixin, ListView):
     # Указываем модель, объекты которой мы будем выводить
     model = Post

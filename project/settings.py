@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
-import allauth
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,6 +56,7 @@ INSTALLED_APPS = [
 
 ]
 SITE_ID = 1
+SITE_URL = 'http://127.0.0.1:8000/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -160,7 +161,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
 # подтверждение регистрации по почте
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 # подтверждение регистрации через консоль
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_FORMS = {'signup': 'sign.models.BaseRegisterForm'}
 
 
@@ -180,3 +181,5 @@ EMAIL_HOST_PASSWORD = '1CETJHvfMVRcQiqFLnDZ'  # пароль от почты
 EMAIL_USE_SSL = False  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'alexandradaniloff@mail.ru'
+
+
