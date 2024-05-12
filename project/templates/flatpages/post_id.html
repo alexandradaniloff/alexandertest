@@ -1,0 +1,69 @@
+{% load static %}
+{% block title %}
+
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим все товары -->
+{% block content %}
+   <h1>Объявление</h1>
+   <!-- Выводим товары, только если они есть с помощью тега if -->
+   {% if post_id %}
+       <table>
+           <tr>
+               <td>Название</td>
+               <td>Объявление</td>
+               <td>Дата создания</td>
+               <td>Цена</td>
+               <td>Автор</td>
+               <td>Категория</td>
+               <td>Изображения</td>
+               <td>Комметарий</td>
+               <td>Автор комментария</td>
+               <td>Дата комментария</td>
+
+
+
+           </tr>
+
+
+           <tr>
+               <td>{{ post_id.title }}</td>
+               <td>{{ post_id.content }}</td>
+               <td>{{ post_id.post_created_at }}</td>
+               <td>{{ post_id.price }}</td>
+               <td>{{ post_id.post_author }}</td>
+               <td>{{ post_id.type }}</td>
+               <td>{{ post_id.image }}</td>
+
+               <td>{% for c in post_id.PostComment.all %}
+                   {{ c.content }}
+                   {% endfor %}
+               </td>
+               <td>{% for c in post_id.PostComment.all %}
+                   {{ c.comment_author }}
+                   {% endfor %}
+               </td>
+               <td>{% for c in post_id.PostComment.all %}
+                   {{ c.comment_created_at }}
+                   {% endfor %}
+               </td>
+           </tr>
+
+
+       </table>
+   {% else %}
+       <!-- Если товаров нет, говорим, что товаров нет ;) -->
+       <h2>Сообщений нет!</h2>
+   {% endif %}
+
+
+
+
+
+
+<button> <a href="{% url 'post_update' post_id.id %}"> Редактировать объявление </a> </button>
+<button> <a href="{% url 'post_delete' post_id.id %}"> Удалить объявление </a> </button>
+<button> <a href="{% url 'comment_create' %}"> Создать комментарий </a> </button>
+<button> <a href="{% url 'post' %}"> Назад </a> </button>
+
+{% endblock content %}

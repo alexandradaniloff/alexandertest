@@ -1,0 +1,21 @@
+{% block title %}
+
+{% endblock title %}
+
+<!-- В контенте на странице мы выводим все товары -->
+{% block content %}
+   <body><h1>Создать отклик</h1>
+
+
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Отправить" />
+</form>
+<button> <a href="{% url 'post' %}"> Назад </a> </button>
+
+</body>
+
+{% endblock content %}
